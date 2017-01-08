@@ -12,6 +12,8 @@ class Nim < Formula
     sha256 "602c726784ef9fb42538ac9945c8fad86c4aacdd8a9689f71e04a4d5f9c951e2" => :yosemite
   end
 
+  option "with-linenoise", "Build the compiler with linenoise to support readline keybindings"
+
   resource "nimble" do
     url "https://github.com/nim-lang/nimble/archive/v0.7.10.tar.gz"
     sha256 "9fc4a5eb4a294697e530fe05e6e16cc25a1515343df24270c5344adf03bd5cbb"
@@ -33,6 +35,12 @@ class Nim < Formula
       resource("nimsuggest").stage { nimsuggest.install Dir["*"] }
     else
       system "/bin/sh", "build.sh"
+      if build.with? "linenoise"
+        # Compile the koch management tool
+        system "bin/nim", "c", "-d:release", "koch"
+        # Build a new version of the compiler
+        system "./koch", "boot", "-d:release", "-d:useLinenoise"
+      end
     end
     system "/bin/sh", "install.sh", prefix
 
