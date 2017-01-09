@@ -61,6 +61,6 @@ class Nim < Formula
       license = "MIT"
       requires "nim >= 0.15.0"
     EOS
-    assert_equal "name: \"hello\"", shell_output("#{bin}/nimble dump").split("\n")[0].chomp
+    assert_equal "name: \"hello\"\n", shell_output("#{bin}/nimble dump").lines.first
   end
 end
