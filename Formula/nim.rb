@@ -40,7 +40,6 @@ class Nim < Formula
     bin.install_symlink prefix/"nim/bin/nim" => "nimrod"
 
     target = prefix/"nim/bin"
-    target.install "dist/nimble/src/nimblepkg"
     target.install "bin/nimsuggest"
     target.install "bin/nimble"
     target.install "bin/nimgrep"
