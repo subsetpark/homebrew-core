@@ -12,7 +12,7 @@ class Nim < Formula
     sha256 "602c726784ef9fb42538ac9945c8fad86c4aacdd8a9689f71e04a4d5f9c951e2" => :yosemite
   end
 
-  option "with-linenoise", "Build the compiler with linenoise to support readline keybindings"
+  option "without-linenoise", "Leave out readline keybindings via linenoise"
 
   resource "nimble" do
     url "https://github.com/nim-lang/nimble/archive/v0.7.10.tar.gz"
